@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/view_models/globalVariables_viewModel.dart';
-import 'package:ecommerce_app/models/Product.dart';
-import 'package:ecommerce_app/utils/size_config.dart';
-import 'package:ecommerce_app/utils/constants.dart';
+import 'package:jogs_store/view_models/globalVariables_viewModel.dart';
+import 'package:jogs_store/models/Product.dart';
+import 'package:jogs_store/utils/size_config.dart';
+import 'package:jogs_store/utils/constants.dart';
 import 'product_description.dart';
 import 'top_rounded_container.dart';
 import 'product_images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ecommerce_app/view_models/user_info_viewModel.dart';
-import 'package:ecommerce_app/view_models/auth_viewModel.dart';
+import 'package:jogs_store/view_models/user_info_viewModel.dart';
+import 'package:jogs_store/view_models/auth_viewModel.dart';
 import 'package:provider/provider.dart';
 import 'package:progress_state_button/iconed_button.dart';
 import 'package:progress_state_button/progress_button.dart';
@@ -77,11 +77,17 @@ class _BodyState extends State<Body> {
                 color: Color(0xfff6f8f8),
                 child: Column(
                   children: [
-                    Flexible(
-                      flex: 16,
-                      child: ProductDescription(
-                        product: widget.product,
-                        pressOnSeeMore: () {},
+                    Container(
+                      height: 80,
+                      child: ListView(
+                        children: [
+                          Container(
+                            child: ProductDescription(
+                              product: widget.product,
+                              pressOnSeeMore: () {},
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Flexible(
@@ -94,7 +100,7 @@ class _BodyState extends State<Body> {
                             Flexible(
                               flex: 5,
                               child:
-                                  gv.AllProds['Shoes'].contains(widget.product)
+                                  gv.AllProds['shoes'].contains(widget.product)
                                       ? Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
@@ -234,13 +240,14 @@ class _BodyState extends State<Body> {
                 color: Colors.white,
               ),
               color: PrimaryColor),
-          ButtonState.idle: IconedButton(
-              text: "The item is not added",
-              icon: Icon(
-                Icons.cancel,
-                color: Colors.white,
-              ),
-              color: PrimaryColor)
+          // ButtonState.idle: IconedButton(
+          //     text: "The item is not added",
+          //     icon: Icon(
+          //       Icons.cancel,
+          //       color: Colors.white,
+          //     ),
+          //     color: PrimaryColor
+          //     )
         },
         onPressed: () => onPressedIconWithText(gv, u),
         state: stateTextWithIcon);
